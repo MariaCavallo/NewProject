@@ -1,5 +1,5 @@
-import {useQuery} from "@tanstack/react-query";
-import {getItemDetalle} from "../queries/items.queries";
+import { useQuery } from "@tanstack/react-query";
+import { getItemDetalle } from "../queries/items.queries";
 import PropTypes from "prop-types";
 import { Item } from "../schema/ItemCategory";
 
@@ -26,7 +26,7 @@ const ViewItem = ({item}: ViewItemProps) => {
     return data ? (
         <div>
             <h4>Item: {item.name}</h4>
-            <img src={data.url} alt={data.name}/>
+            <img src={data.sprites.default} alt={data.name}/>
         </div>
     ): null;
 }

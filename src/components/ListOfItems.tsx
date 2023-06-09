@@ -25,8 +25,11 @@ const ListOfItems = ({category}: ListOfItemsProps) => {
         <div >
             <h4>Items</h4>
 
-            {data.item.map(item =>
-                <ViewItem key={item.name} item={item}/>
+            {data.items && data.items.map(item =>
+                <ViewItem 
+                    key={item.name} 
+                    item={item}
+                />
             )}
         </div>
     ): null;

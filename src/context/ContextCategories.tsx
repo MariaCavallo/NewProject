@@ -19,7 +19,7 @@ const initialState: State = {
     selectCategory: (category: Category) => {}
 };
 
-const reducer = (state: State, action: Action): State => {
+const reducer = (state: State, action: Action) => {
     switch (action.type) {
         case "SELECCIONAR_CATEGORIA":
             return {...state, 
