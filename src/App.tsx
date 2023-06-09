@@ -1,30 +1,22 @@
-import { useState } from "react";
-import ListMessages from "./components/ListMessages";
-import ViewMessage from "./components/ViewMessages";
-import { Message, Messages } from "./components/data/Message";
-import './App.css'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProviderCategories from "./context/ContextCategories";
+import ListCategories from "./components/ListCategories";
+import ViewCategory from "./components/ViewCategory";
+import "./App.css";
 
-function App() {
-
-    const [mensaje, setMensaje] = useState<Message | undefined>();
-
-    const selectMessage = (id: number) =>
-        setMensaje(Messages.find((m) => m.id === id));
+export default function App() {
 
     return (
-        <div className="App">
-            <h1>Bandeja de Entrada</h1>
-            <div id="bandejaDeEntrada">
-                <ListMessages
-                    messages={Messages}
-                    selectMessage={selectMessage}
-                />
-                <ViewMessage 
-                    message={mensaje}
-                />
-            </div>
-        </div>
+        <QueryClientProvider client={new QueryClient()}>
+            <ProviderCategories>
+                <div className="App">
+                    <h1>Inventario Pokemon</h1>
+                    <div id="bandejaDeEntrada">
+                        <ListCategories/>
+                        <ViewCategory />
+                    </div>
+                </div>
+            </ProviderCategories>
+        </QueryClientProvider>
     );
 }
-
-export default App;
