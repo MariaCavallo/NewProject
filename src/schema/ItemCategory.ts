@@ -18,4 +18,19 @@ export interface CategoryItems extends Category {
 
 export interface Sprite {
     "default": string;
+    other: {
+        home: {
+            front_default: string;
+        };
+    }
+}
+
+export interface Pokemon {
+    name: string;
+    url: string;
+}
+
+export interface PokemonSprite extends Pokemon{
+    id: number;
+    sprites: Sprite;
 }
