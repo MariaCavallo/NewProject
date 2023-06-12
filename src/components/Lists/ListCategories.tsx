@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
-import {getItemCategories} from "../queries/items.queries";
-import { Category } from "../schema/ItemCategory";
+import {getItemCategories} from "../../queries/items.queries";
+import { Category } from "../../schema/ItemCategory";
 import ListCategoriesItem, { extractCategoriaId } from "./ListCategoriesItem";
-import { ContextCategories } from "../context/ContextCategories";
+import { ContextCategories } from "../../context/ContextCategories";
 
 const ListCategories = () => {
 

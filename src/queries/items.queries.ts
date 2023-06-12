@@ -1,4 +1,4 @@
-import { Category, CategoryItems, ItemSprite } from "../schema/ItemCategory";
+import { Category, CategoryItems, ItemSprite, Pokemon, PokemonSprite } from "../schema/ItemCategory";
 
 export const getItemCategories = async (): Promise<Category[]> => {
     const response = await fetch("https://pokeapi.co/api/v2/item-category/");
@@ -17,3 +17,20 @@ export const getItemDetalle = async (itemId: string): Promise<ItemSprite> => {
     const data = await response.json();
     return data;
 };
+
+export const getPokemons = async (): Promise<Pokemon[]> => {
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const data = await response.json();
+    return data.results;
+}
+
+export const searchPokemons = async (pokemonName: string): Promise<Pokemon[]> => {
+    const data = await getPokemons();
+    return data.filter(pokemon => pokemon.name.toLowerCase().startsWith(pokemonName.toLowerCase()));
+};
+
+export const getOnePokemon = async (pokemonName: string): Promise<PokemonSprite> => {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`);
+    return await response.json();
+    
+}

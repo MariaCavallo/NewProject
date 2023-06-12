@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ContextCategories } from "../context/ContextCategories";
-import ListOfItems from "./ListOfItems";
+import { ContextCategories } from "../../context/ContextCategories";
+import ListOfItems from "../Lists/ListOfItems";
 
 // Documentar
 const ViewCategory = () => {
