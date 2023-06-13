@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getItemDetalle } from "../queries/items.queries";
+import { getItemDetalle } from "../../../queries/items.queries";
 import PropTypes from "prop-types";
-import { Item } from "../schema/ItemCategory";
+import { Item } from "../../../schema/ItemCategory";
 
 
 export const extractItemId = (url: string): string => {

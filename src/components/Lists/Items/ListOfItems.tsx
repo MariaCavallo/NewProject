@@ -1,9 +1,9 @@
-import { extractCategoriaId } from "./ListCategoriesItem";
+import { extractCategoriaId } from "../Category/ListCategoriesItem";
 import { useQuery } from "@tanstack/react-query";
-import { getItemCategory } from "../../queries/items.queries";
+import { getItemCategory } from "../../../queries/items.queries";
 import PropTypes from "prop-types";
-import { Category } from "../../schema/ItemCategory";
-import ViewItem from "../Views/ViewItem";
+import { Category } from "../../../schema/ItemCategory";
+import ViewItem from "../../Views/Item/ViewItem";
 
 
 interface ListOfItemsProps {

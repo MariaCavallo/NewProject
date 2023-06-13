@@ -1,5 +1,5 @@
-import { Pokemon } from '../../schema/ItemCategory';
-import { extractPokemonId } from '../../services/PokemonServices';
+import { Pokemon } from '../../../schema/ItemCategory';
+import { extractPokemonId } from '../../../services/PokemonServices';
 import PropTypes from 'prop-types';
 
 interface ListPokemonsItemProps {

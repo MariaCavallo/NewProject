@@ -1,24 +1,25 @@
-//import ListCategories from "./components/Lists/ListCategories";
-//import ViewCategory from "./components/Views/ViewCategory";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./App.css";
 import SearchPokemon from "./components/SearchPokemon";
 
 
 export default function App() {
 
+    const client = new QueryClient();
+
     return (
-        <div className="App">
-            <div className="title">
-                <h1>PokeDex</h1>
-                <img className="App-logo" src="/src/assets/pokebola.png" alt="pokebola" />
-            </div>    
-            <div id="bandejaDeEntrada">
-                {/* <ListCategories/> */}
-                {/* <ViewCategory /> */}
-                <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                    <SearchPokemon />
+        <QueryClientProvider client={client}>
+            <div className="App">
+                <div className="title">
+                    <h1>PokeDex</h1>
+                    <img className="App-logo" src="/src/assets/pokebola.png" alt="pokebola" />
+                </div>    
+                <div id="bandejaDeEntrada">
+                    <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                        <SearchPokemon />
+                    </div>
                 </div>
             </div>
-        </div>
+        </QueryClientProvider>
     );
 }
