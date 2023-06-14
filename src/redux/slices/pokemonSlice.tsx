@@ -9,7 +9,7 @@ const initialState: PokemonsState = {
 }
 
 const pokemonSlice = createSlice({
-    name: "pokemons",
+    name: 'pokemons',
     initialState,
     reducers: {
         searchPokemon: (state, action: PayloadAction<string>) => {

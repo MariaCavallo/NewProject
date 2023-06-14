@@ -1,13 +1,13 @@
-import { FC, useState } from 'react'
+import React, { useState } from 'react'
 import ListPokemons from './Lists/Pokemons/ListPokemons'
 import ViewPokemon from './Views/Pokemon/ViewPokemon'
-import { Pokemon } from '../schema/ItemCategory'
+import { Pokemon } from '../types/ItemCategory'
 
-const SearchPokemon: FC = () => {
+const SearchPokemon: React.FC = () => {
     
     const [text, setText] = useState<string>("");
     const [name, setName] = useState<string>("");
-    const [pokemonSelected, setPokemonSelected] = useState<Pokemon | null>(null)
+    const [pokemonSelected, setPokemonSelected] = useState<Pokemon | null>(null);
 
     const onSearchClick = () => {
         setName(text)

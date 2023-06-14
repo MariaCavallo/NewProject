@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Pokemon } from '../../../schema/ItemCategory'
+import { Pokemon } from '../../../types/ItemCategory'
 import PropTypes from 'prop-types'
 import { getOnePokemon } from '../../../queries/items.queries'
 
@@ -10,7 +10,10 @@ interface View {
 
 const ViewPokemon = ({pokemonSelected}: View) => {
     
-    const {data: pokemon, isLoading, refetch} = useQuery(["getPokemon"], () => getOnePokemon(pokemonSelected?.name || ""));
+    const {data: pokemon, isLoading, refetch} = useQuery(
+        ["getPokemon"],
+        () => getOnePokemon(pokemonSelected?.name || "")
+    );
     
     useEffect(() => {
         if(pokemonSelected) {
@@ -26,7 +29,7 @@ const ViewPokemon = ({pokemonSelected}: View) => {
             <h4>Pokemon: {pokemon.name}</h4>
             <h5>#{pokemon.id}</h5>
             <img 
-                src={pokemon.sprites.other.home.front_default}
+                src={pokemon.sprites?.other?.home?.front_default}
                 alt={pokemon.name} 
             />
         </div>

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Category } from "../../../schema/ItemCategory";
+import { Category } from "../../../types/ItemCategory";
 
 // Documentar
 export const extractCategoriaId = (url: string): string => {

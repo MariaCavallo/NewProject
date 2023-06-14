@@ -1,4 +1,4 @@
-import { Pokemon } from '../../../schema/ItemCategory';
+import { Pokemon } from '../../../types/ItemCategory';
 import { extractPokemonId } from '../../../services/PokemonServices';
 import PropTypes from 'prop-types';
 

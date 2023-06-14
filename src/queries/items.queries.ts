@@ -1,4 +1,4 @@
-import { Category, CategoryItems, ItemSprite, Pokemon, PokemonSprite } from "../schema/ItemCategory";
+import { Category, CategoryItems, ItemSprite, Pokemon, PokemonSprite } from "../types/ItemCategory";
 
 export const getItemCategories = async (): Promise<Category[]> => {
     const response = await fetch("https://pokeapi.co/api/v2/item-category/");

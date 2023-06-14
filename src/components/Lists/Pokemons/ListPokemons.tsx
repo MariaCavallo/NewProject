@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Pokemon } from '../../../schema/ItemCategory';
+import { Pokemon } from '../../../types/ItemCategory';
 import { searchPokemons } from '../../../queries/items.queries';
 import ListPokemonsItem from './ListPokemonsItem';
 import { extractPokemonId } from '../../../services/PokemonServices';
@@ -12,7 +12,10 @@ interface List {
 
 const ListPokemons = ({name, selectPokemon}: List) => {
 
-    const {data: pokemons, isLoading, refetch} = useQuery(["getPokemon"], () => searchPokemons(name)); 
+    const {data, isLoading, refetch} = useQuery(
+        ["getPokemons"],
+        () => searchPokemons(name)
+    ); 
     
     useEffect(() => {
         if (name) {
@@ -24,7 +27,7 @@ const ListPokemons = ({name, selectPokemon}: List) => {
 
     return (
         <div id='listadoCategorias'>
-            {pokemons && pokemons.map((pokemon: Pokemon) => (
+            {data && data.map((pokemon: Pokemon) => (
                 <ListPokemonsItem 
                     pokemon={pokemon}
                     selectPokemon={selectPokemon}
