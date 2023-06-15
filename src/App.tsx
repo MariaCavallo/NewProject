@@ -1,6 +1,6 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./App.css";
-import SearchPokemon from "./components/SearchPokemon";
+import SearchPokemon from "./components/Search/SearchPokemon";
 
 
 export default function App() {

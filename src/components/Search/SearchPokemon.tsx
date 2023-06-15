@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import ListPokemons from './Lists/Pokemons/ListPokemons'
-import ViewPokemon from './Views/Pokemon/ViewPokemon'
-import { Pokemon } from '../types/ItemCategory'
+import ListPokemons from '../Lists/Pokemons/ListPokemons'
+import ViewPokemon from '../Views/Pokemon/ViewPokemon'
+import { Pokemon } from '../../types/ItemCategory'
 
 const SearchPokemon: React.FC = () => {
     

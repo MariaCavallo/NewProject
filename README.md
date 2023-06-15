@@ -1,4 +1,4 @@
-Inventario Pokemon
+PokeDex
 
 Mini-proyecto de la materia Especialización en Front End 1.
 Trata de una página web cuya función es registrar la inventacion de los pokemones.
@@ -13,11 +13,12 @@ git clone https://github.com/MariaCavallo/ProjectPokemonTS
 Una vez clonado el repositorio podremos ejecutarlo con los siguientes comandos.
 
 ```
-cd SpecializationFrontend
-npm i
+cd ProjectPokemonTS-main
+npm install
 npm run dev
 ```
 ## Tecnologías
 
 React con Vite + TS.
+Redux-Toolkit, Reac-Redux & Redux.
 PropTypes para los tipos de datos.
