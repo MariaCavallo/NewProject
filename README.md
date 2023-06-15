@@ -21,6 +21,6 @@ npm run dev
 
 ```
 React con Vite + TS.
-Redux-Toolkit, Reac-Redux & Redux.
+Redux-Toolkit, React-Redux & Redux.
 PropTypes para los tipos de datos.
 ```
