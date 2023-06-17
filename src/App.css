@@ -5,7 +5,9 @@
 }
 
 body {
-  background-color: whitesmoke;
+  background-image: url('./assets/background-image.png');
+  background-repeat: repeat-y;
+  background-size: contain;
 }
 
 .App {
@@ -22,7 +24,10 @@ body {
 .title h1{
   color: #ed5564;
   font-size: 3rem;
+  width: 16%;
   font-style: italic;
+  box-shadow: inset #eee9e9 0px 0px 20px 2px;
+  border-radius: 10px;
 }
 
 .App-logo{

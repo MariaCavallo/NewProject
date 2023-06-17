@@ -5,5 +5,5 @@ export const store = configureStore({
     reducer: pokemonReducer
 })
 
-export type ApptState = ReturnType<typeof store.getState>;
+export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
