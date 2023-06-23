@@ -1,43 +1,37 @@
 import React, { useState } from 'react'
 import ListPokemons from '../Lists/Pokemons/ListPokemons'
 import ViewPokemon from '../Views/Pokemon/ViewPokemon'
-import { Pokemon } from '../../types/ItemCategory'
+import { AppDispatch } from '../../redux/store'
+import { useDispatch } from 'react-redux'
+import { thunkGetOnePokemon } from '../../thunk/Middleware'
 
 const SearchPokemon: React.FC = () => {
     
-    const [text, setText] = useState<string>("");
     const [name, setName] = useState<string>("");
-    const [pokemonSelected, setPokemonSelected] = useState<Pokemon | null>(null);
+    const dispatch: AppDispatch = useDispatch();
 
-    const onSearchClick = () => {
-        setName(text)
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        dispatch(thunkGetOnePokemon(name))
     }
 
-    const onSelectPokemon = (pokemon: Pokemon) => {
-        setPokemonSelected(pokemon)
-    }
 
     return (
         <>
+        <form onSubmit={onSubmit}>
             <div id='buscarPokemon'>
                 <label>Buscar pokemon</label>
                 <input 
                     type="text" 
                     placeholder={"Pikachu, Charmander, Ditto, etc"}
-                    onChange={(e) => setText(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                 />
-                <button onClick={() => onSearchClick()}>
-                    Buscar
-                </button>
+                <button>Buscar</button>
             </div>
-            <div style={{display: 'flex', flexDirection:'row'}}>
-                <ListPokemons 
-                    name={name || text}
-                    selectPokemon={onSelectPokemon}
-                />
-                <ViewPokemon 
-                    pokemonSelected={pokemonSelected}
-                />
+        </form>
+            <div style={{ display: 'flex', flexDirection:'row' }}>
+                <ListPokemons />
+                <ViewPokemon />
             </div>
         </>
     )

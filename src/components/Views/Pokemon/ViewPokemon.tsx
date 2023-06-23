@@ -1,46 +1,32 @@
-import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { Pokemon } from '../../../types/ItemCategory'
-import PropTypes from 'prop-types'
-import { getOnePokemon } from '../../../queries/items.queries'
+import { useSelector } from 'react-redux'
+import { AppState } from '../../../redux/store';
 
-interface View {
-    pokemonSelected: Pokemon | null
-}
-
-const ViewPokemon = ({pokemonSelected}: View) => {
+const ViewPokemon = () => {
     
-    const {data: pokemon, isLoading, refetch} = useQuery(
-        ["getPokemon"],
-        () => getOnePokemon(pokemonSelected?.name || "")
-    );
-    
-    useEffect(() => {
-        if(pokemonSelected) {
-            refetch();
-        }
-    }, [refetch, pokemonSelected])
+    const { search, loading } = useSelector(( state: AppState ) => state);
+    const { name, types, sprites, stats } = search;
+    const { other: { home: { front_default } } } = sprites;
 
-    if (!pokemonSelected) return <></>
-    if (isLoading) return <div>Cargando pokemon...</div>
+    if (loading) return <div>Cargando pokemon...</div>
 
-    return pokemon ? (
+    return search.name ? (
         <div className='vistaPokemon'>
-            <h4>Pokemon: {pokemon.name}</h4>
-            <h5>#{pokemon.id}</h5>
-            <img 
-                src={pokemon.sprites?.other?.home?.front_default}
-                alt={pokemon.name} 
-            />
+            <h4>Pokemon: {name.toUpperCase()}</h4>
+            <h5>#{search.id}</h5>
+            {types.map(({ type: {name} }) => (
+                <span className={`typeName ${name}`}>
+                    {name.toUpperCase()}
+                </span>
+            ))}
+            <img src={front_default} alt={name} />
+            {stats.map(({ stat: {name}, base_stat }) => (
+                <p>
+                    <span>{name}:</span> 
+                    {base_stat}
+                </p>
+            ))}
         </div>
     ): null
-}
-
-ViewPokemon.propTypes = {
-    item: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-    })
 }
 
 export default ViewPokemon;

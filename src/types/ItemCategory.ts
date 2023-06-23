@@ -4,7 +4,7 @@ export interface Item{
 }
 
 export interface ItemSprite extends Item {
-    sprites: Sprite;
+    sprites: Sprites;
 }
 
 export interface Category {
@@ -16,21 +16,35 @@ export interface CategoryItems extends Category {
     items: Item[];
 }
 
-export interface Sprite {
-    "default": string;
-    other: {
-        home: {
-            front_default: string;
-        };
-    }
+interface Sprites {
+    other: { home: { front_default: string }};
 }
 
 export interface Pokemon {
     name: string;
     url: string;
+    id: number;
+    sprites: Sprites;
+    types: Types[];
+    stats: Stats[];
 }
 
 export interface PokemonSprite extends Pokemon{
     id: number;
-    sprites: Sprite;
+    sprites: Sprites;
+}
+
+interface Types {
+    type: { name: string }
+}
+
+interface Stats {
+    base_stat: number;
+    stat: { name: string };
+}
+
+export interface PokemonState {
+    search: Pokemon;
+    allPokemon: any[];
+    loading: boolean;
 }

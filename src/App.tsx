@@ -1,14 +1,10 @@
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./App.css";
 import SearchPokemon from "./components/Search/SearchPokemon";
 
 
 export default function App() {
 
-    const client = new QueryClient();
-
     return (
-        <QueryClientProvider client={client}>
             <div className="App">
                 <div className="title">
                     <h1>PokeDex</h1>
@@ -20,6 +16,5 @@ export default function App() {
                     </div>
                 </div>
             </div>
-        </QueryClientProvider>
     );
 }

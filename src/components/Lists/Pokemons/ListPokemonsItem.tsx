@@ -1,24 +1,26 @@
-import { Pokemon } from '../../../types/ItemCategory';
 import { extractPokemonId } from '../../../services/PokemonServices';
-import PropTypes from 'prop-types';
+import { AppDispatch, AppState } from '../../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { thunkGetOnePokemon } from '../../../thunk/Middleware';
 
-interface ListPokemonsItemProps {
-    pokemon: Pokemon,
-    selectPokemon: (pokemon: Pokemon) => void
-}
+const ListPokemonsItem = () => {
 
-const ListPokemonsItem = ({ pokemon, selectPokemon }: ListPokemonsItemProps) => 
+    const useAppDispatch: () => AppDispatch = useDispatch;
+    const dispatch = useAppDispatch();
+    const data = useSelector((state: AppState) => state.allPokemon[0]);
 
-        <div onClick={() => selectPokemon(pokemon)}>
-            <strong>{pokemon.name}</strong>
-            <small>#{extractPokemonId(pokemon.url)}</small>
+    return(
+        <div>
+            {data && data?.map(function(pokemon : { name: string, url: string }){
+                return (            
+                    <div key={pokemon.name} id='listadoCategorias' onClick={() => dispatch(thunkGetOnePokemon(pokemon?.name))}>
+                        <strong>{pokemon.name}</strong>
+                        <small>#{extractPokemonId(pokemon?.url)}</small>
+                    </div>
+                );
+            })}
         </div>
-
-ListPokemonsItem.propTypes = {
-        pokemon: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired,
-        })
-};
+    );
+}
 
 export default ListPokemonsItem;

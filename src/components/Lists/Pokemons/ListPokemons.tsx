@@ -1,41 +1,28 @@
 import { useEffect } from 'react'
-import { Pokemon } from '../../../types/ItemCategory';
-import { searchPokemons } from '../../../queries/items.queries';
 import ListPokemonsItem from './ListPokemonsItem';
-import { extractPokemonId } from '../../../services/PokemonServices';
-import { useQuery } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, AppState } from '../../../redux/store';
+import { thunkGetPokemons } from '../../../thunk/Middleware';
 
-interface List {
-    name: string,
-    selectPokemon: (pokemon: Pokemon) => void
-}
+const ListPokemons = () => {
 
-const ListPokemons = ({name, selectPokemon}: List) => {
-
-    const {data, isLoading, refetch} = useQuery(
-        ["getPokemons"],
-        () => searchPokemons(name)
-    ); 
+    const { loading, allPokemon } = useSelector(( state: AppState ) => state);
+    const dispatch: AppDispatch = useDispatch();
     
-    useEffect(() => {
-        if (name) {
-            refetch();
-        }
-    }, [name, refetch]);
+    const fetchPokemon = () => dispatch(thunkGetPokemons());
 
-    if (isLoading) return <div>Cargando pokemons...</div>
+    useEffect(() => {
+        if (allPokemon.length == 0) fetchPokemon();
+    }, []);
+
+    if (loading) return <div>Cargando pokemons...</div>
 
     return (
         <div id='listadoCategorias'>
-            {data && data.map((pokemon: Pokemon) => (
-                <ListPokemonsItem 
-                    pokemon={pokemon}
-                    selectPokemon={selectPokemon}
-                    key={extractPokemonId(pokemon.url)}
-                />
-            ))}
+            <ListPokemonsItem />
         </div>
-    )
+    );
+
 }
 
 export default ListPokemons;
